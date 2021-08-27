@@ -1,5 +1,5 @@
 var ironman;
-var Diamondimg,diamondGroup,diamondscore,diamondsound;
+var Diamondimg,diamondGroup,diamondscore=0,diamondsound;
 var bg, backgroundImg;
 var stoneIMG,stonesgroup;
 
@@ -8,7 +8,7 @@ function preload() {
   ironmanimg=loadImage("images/iron.png");
   stoneIMG=loadImage("images/stone.png");
   Diamondimg=loadImage("images/diamond.png");
-  diamondsound=loadsound("sound/coinsound.mp3")
+  diamondsound=loadSound("sound/coinsound.mp3");
 }
 
 function setup() {
@@ -47,13 +47,14 @@ for (var i=0;i<(stonesgroup).length;i++){
 }
 }
 genratediamond();
+
   for(var i=0;i<(diamondGroup).length;i++){
-    var temp=(diamondGroup).get(i);
+    var temp=diamondGroup.get(i);
       if (temp.isTouching(ironman)){
-        temp.destroy;  
+        diamondsound.play();
         diamondscore++;
-        
-        temp=null;    
+        temp.destroy();  
+       temp=null;    
     }  
 }
 drawSprites()
